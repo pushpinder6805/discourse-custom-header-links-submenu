@@ -28,6 +28,9 @@ export default class CustomHeaderLinks extends Component {
         target: target === "self" ? "" : "_blank",
       };
 
+      // Adding submenu support
+      const subLinks = link.subLinks || []; // If the link has subLinks, add them
+
       result.push({
         device: `headerLink--${device}`,
         hideOnScroll: `headerLink--${hideOnScroll}`,
@@ -35,6 +38,7 @@ export default class CustomHeaderLinks extends Component {
         linkClass,
         anchorAttributes,
         linkText,
+        subLinks, // New property for sublinks
       });
 
       return result;
