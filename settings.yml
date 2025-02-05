@@ -37,6 +37,13 @@ custom_header_links:
             url:
               type: string
               required: true
+              links_position:
+  default: right
+  type: enum
+  choices:
+    - right
+    - left
+
             target:
               type: enum
               choices:
