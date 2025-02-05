@@ -43,3 +43,9 @@ custom_header_links:
                 - blank
                 - self
               default: self
+              links_position:
+  default: right
+  type: enum
+  choices:
+    - right
+    - left
