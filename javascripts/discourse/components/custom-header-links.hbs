@@ -20,6 +20,17 @@
         >
           {{link.linkText}}
         </a>
+        
+        {{#if link.subLinks}} <!-- Check if subLinks exist for this link -->
+          <ul class="submenu">
+            {{#each link.subLinks as |subLink|}}
+              <li>
+                <a href={{subLink.href}} target={{subLink.target}}>{{subLink.text}}</a>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
       </li>
     {{/each}}
   </ul>
