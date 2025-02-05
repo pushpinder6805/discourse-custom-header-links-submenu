@@ -1,26 +1,24 @@
 import Component from "@glimmer/component";
 import { dasherize } from "@ember/string";
 
-export default class CustomHeaderLinks extends Component {
+export default class CustomHeaderLinksWithSubmenu extends Component {
   get shouldShow() {
-    return settings.custom_header_links?.length > 0;
+    return settings.custom_header_links_with_submenu?.length > 0;
   }
 
   get links() {
-    return settings.custom_header_links.reduce((result, link) => {
+    return settings.custom_header_links_with_submenu.reduce((result, link) => {
       const linkText = link.text;
       const linkTitle = link.title;
       const linkHref = link.url;
       const target = link.target;
-      const hideOnScroll = link.hide_on_scroll;
-      const locale = link.locale;
-      const device = link.view;
+      const subLinks = link.subLinks || [];  // Fetch sublinks if available
 
-      if (!linkText || (locale && document.documentElement.lang !== locale)) {
+      if (!linkText) {
         return result;
       }
 
-      const linkClass = `${dasherize(linkText)}-custom-header-links`; // legacy name
+      const linkClass = `${dasherize(linkText)}-custom-header-links`;
 
       const anchorAttributes = {
         title: linkTitle,
@@ -28,17 +26,11 @@ export default class CustomHeaderLinks extends Component {
         target: target === "self" ? "" : "_blank",
       };
 
-      // Ensuring subLinks is always an array (even if empty)
-      const subLinks = Array.isArray(link.subLinks) ? link.subLinks : [];
-
       result.push({
-        device: `headerLink--${device}`,
-        hideOnScroll: `headerLink--${hideOnScroll}`,
-        locale: locale ? `headerLink--${locale}` : null,
         linkClass,
         anchorAttributes,
         linkText,
-        subLinks, // Ensured that subLinks is handled as an array
+        subLinks, // Attach subLinks to the main link
       });
 
       return result;
