@@ -8,27 +8,11 @@ custom_header_links:
       text:
         type: string
         required: true
-        validations:
-          min_length: 1
-          max_length: 100
       title:
         type: string
-        validations:
-          min_length: 1
-          max_length: 1000
       url:
         type: string
         required: true
-        validations:
-          min_length: 1
-          max_length: 2048
-          url: true
-      view:
-        type: enum
-        choices:
-          - vdm
-          - vdo
-          - vmo
       target:
         type: enum
         choices:
@@ -59,12 +43,3 @@ custom_header_links:
                 - blank
                 - self
               default: self
-            title:
-              type: string
-
-links_position:
-  default: right
-  type: enum
-  choices:
-    - right
-    - left
