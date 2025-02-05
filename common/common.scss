@@ -1,70 +1,113 @@
-custom_header_links:
-  type: objects
-  default: []
-  schema:
-    name: "link"
-    identifier: text
-    properties:
-      text:
-        type: string
-        required: true
-        validations:
-          min_length: 1
-          max_length: 100
-      title:
-        type: string
-        validations:
-          min_length: 1
-          max_length: 1000
-      url:
-        type: string
-        required: true
-        validations:
-          min_length: 1
-          max_length: 2048
-          url: true
-      view:
-        type: enum
-        choices:
-          - vdm
-          - vdo
-          - vmo
-      target:
-        type: enum
-        choices:
-          - blank
-          - self
-      hide_on_scroll:
-        type: enum
-        choices:
-          - remove
-          - keep
-        default: keep
-      locale:
-        type: string
-      subLinks:  # Added subLinks support
-        type: array
-        items:
-          type: object
-          properties:
-            text:
-              type: string
-              required: true
-            url:
-              type: string
-              required: true
-            target:
-              type: enum
-              choices:
-                - blank
-                - self
-              default: self
-            title:
-              type: string
+/* Custom header link styles */
+.custom-header-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-links_position:
-  default: right
-  type: enum
-  choices:
-    - right
-    - left
+.custom-header-links .headerLink {
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+}
+
+.custom-header-links .headerLink a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position directly under the parent link */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  padding: 0;
+  list-style: none;
+}
+
+.submenu li {
+  padding: 10px;
+}
+
+.submenu li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-header-links .headerLink:hover .submenu {
+  display: block;
+}
+
+.submenu li a:hover {
+  background-color: #f0f0f0;
+}
+
+
+.before-header-panel-outlet {
+  display: flex;
+}
+
+@if $links_position == "right" {
+  .before-header-panel-outlet {
+    margin-left: auto;
+    + .panel {
+      margin-left: 0;
+    }
+  }
+}
+
+.custom-header-links {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  @if $links_position == "left" {
+    margin-left: 1em;
+    &--hide-links {
+      display: none;
+    }
+  }
+
+  .headerLink {
+    list-style: none;
+    a {
+      padding: 0.35em 0.6em;
+      color: var(--header_primary);
+      font-size: var(--font-up-1);
+    }
+  }
+
+  &--hide-links {
+    .headerLink:not(.headerLink--keep) {
+      display: none;
+    }
+  }
+}
+
+.desktop-view .headerLink--vmo,
+.mobile-view .headerLink--vdo {
+  display: none;
+}
+
+// for compatibility with the discourse-header-search component
+
+.floating-search-input-wrapper {
+  flex: 1 1 auto;
+  margin: 0 1em;
+  @if $links_position == "left" {
+    order: 2;
+  }
+
+  .floating-search-input {
+    width: 100%;
+    margin: 0;
+  }
+
+  .search-menu {
+    width: 100% !important; // overrides very specific selector
+  }
+}
