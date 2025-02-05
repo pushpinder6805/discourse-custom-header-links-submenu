@@ -1,18 +1,14 @@
 {{#if this.shouldShow}}
-  <ul
-    class="custom-header-links
-      {{if @outletArgs.topicInfoVisible 'custom-header-links--hide-links'}}"
-  >
+  <ul class="custom-header-links
+      {{if @outletArgs.topicInfoVisible 'custom-header-links--hide-links'}}">
     {{#each this.links as |link|}}
-      <li
-        class={{concat-class
+      <li class={{concat-class
           "headerLink"
           link.device
           link.locale
           link.linkClass
           link.hideOnScroll
-        }}
-      >
+      }}>
         <a
           title={{link.anchorAttributes.title}}
           href={{link.anchorAttributes.href}}
@@ -21,16 +17,16 @@
           {{link.linkText}}
         </a>
         
-        {{#if link.subLinks}} <!-- Check if subLinks exist for this link -->
+        <!-- Render submenu if subLinks exist -->
+        {{#if link.subLinks}}
           <ul class="submenu">
             {{#each link.subLinks as |subLink|}}
               <li>
-                <a href={{subLink.href}} target={{subLink.target}}>{{subLink.text}}</a>
+                <a href={{subLink.url}} target={{subLink.target}}>{{subLink.text}}</a>
               </li>
             {{/each}}
           </ul>
         {{/if}}
-
       </li>
     {{/each}}
   </ul>
