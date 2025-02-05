@@ -5,22 +5,23 @@
   margin: 0;
 }
 
-.custom-header-links .headerLink {
+.custom-header-links li {
   display: inline-block;
   position: relative;
   margin-right: 20px;
 }
 
-.custom-header-links .headerLink a {
+.custom-header-links li a {
   color: white;
   text-decoration: none;
   padding: 10px;
 }
 
+/* Submenu styles */
 .submenu {
   display: none;
   position: absolute;
-  top: 100%; /* Position directly under the parent link */
+  top: 100%; /* Positioned below the parent link */
   left: 0;
   background-color: #fff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -39,75 +40,10 @@
   display: block;
 }
 
-.custom-header-links .headerLink:hover .submenu {
-  display: block;
+.custom-header-links li:hover .submenu {
+  display: block; /* Show submenu on hover */
 }
 
 .submenu li a:hover {
   background-color: #f0f0f0;
-}
-
-
-.before-header-panel-outlet {
-  display: flex;
-}
-
-@if $links_position == "right" {
-  .before-header-panel-outlet {
-    margin-left: auto;
-    + .panel {
-      margin-left: 0;
-    }
-  }
-}
-
-.custom-header-links {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  @if $links_position == "left" {
-    margin-left: 1em;
-    &--hide-links {
-      display: none;
-    }
-  }
-
-  .headerLink {
-    list-style: none;
-    a {
-      padding: 0.35em 0.6em;
-      color: var(--header_primary);
-      font-size: var(--font-up-1);
-    }
-  }
-
-  &--hide-links {
-    .headerLink:not(.headerLink--keep) {
-      display: none;
-    }
-  }
-}
-
-.desktop-view .headerLink--vmo,
-.mobile-view .headerLink--vdo {
-  display: none;
-}
-
-// for compatibility with the discourse-header-search component
-
-.floating-search-input-wrapper {
-  flex: 1 1 auto;
-  margin: 0 1em;
-  @if $links_position == "left" {
-    order: 2;
-  }
-
-  .floating-search-input {
-    width: 100%;
-    margin: 0;
-  }
-
-  .search-menu {
-    width: 100% !important; // overrides very specific selector
-  }
 }
