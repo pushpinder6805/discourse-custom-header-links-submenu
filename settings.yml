@@ -1,4 +1,4 @@
-custom_header_links:
+custom_header_links_with_submenu:
   type: objects
   default: []
   schema:
@@ -18,15 +18,7 @@ custom_header_links:
         choices:
           - blank
           - self
-      hide_on_scroll:
-        type: enum
-        choices:
-          - remove
-          - keep
-        default: keep
-      locale:
-        type: string
-      subLinks:  # Added subLinks support
+      subLinks:  # This field holds the submenus
         type: array
         items:
           type: object
