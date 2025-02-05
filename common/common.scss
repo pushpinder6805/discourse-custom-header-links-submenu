@@ -1,3 +1,53 @@
+/* Custom header link styles */
+.custom-header-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-header-links .headerLink {
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+}
+
+.custom-header-links .headerLink a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position directly under the parent link */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  padding: 0;
+  list-style: none;
+}
+
+.submenu li {
+  padding: 10px;
+}
+
+.submenu li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-header-links .headerLink:hover .submenu {
+  display: block;
+}
+
+.submenu li a:hover {
+  background-color: #f0f0f0;
+}
+
+
 .before-header-panel-outlet {
   display: flex;
 }
