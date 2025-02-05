@@ -28,8 +28,8 @@ export default class CustomHeaderLinks extends Component {
         target: target === "self" ? "" : "_blank",
       };
 
-      // Adding submenu support
-      const subLinks = link.subLinks || []; // If the link has subLinks, add them
+      // Ensuring subLinks is always an array (even if empty)
+      const subLinks = Array.isArray(link.subLinks) ? link.subLinks : [];
 
       result.push({
         device: `headerLink--${device}`,
@@ -38,7 +38,7 @@ export default class CustomHeaderLinks extends Component {
         linkClass,
         anchorAttributes,
         linkText,
-        subLinks, // New property for sublinks
+        subLinks, // Ensured that subLinks is handled as an array
       });
 
       return result;
