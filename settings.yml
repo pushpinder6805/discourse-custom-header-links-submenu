@@ -18,7 +18,7 @@ custom_header_links_with_submenu:
         choices:
           - blank
           - self
-      subLinks:  # This field holds the submenus
+      subLinks:  # This is where users will add submenu items
         type: array
         items:
           type: object
