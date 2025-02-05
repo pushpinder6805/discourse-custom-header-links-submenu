@@ -42,6 +42,25 @@ custom_header_links:
         default: keep
       locale:
         type: string
+      subLinks:  # Added subLinks support
+        type: array
+        items:
+          type: object
+          properties:
+            text:
+              type: string
+              required: true
+            url:
+              type: string
+              required: true
+            target:
+              type: enum
+              choices:
+                - blank
+                - self
+              default: self
+            title:
+              type: string
 
 links_position:
   default: right
